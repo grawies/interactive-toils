@@ -8,7 +8,7 @@ module.exports = {
   mode: "development",
   devtool: "inline-source-map",
   entry: {
-    main: "./src/main.ts",
+    main: "./src/typescript/main.ts",
   },
   output: {
     path: outDir,

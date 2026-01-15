@@ -72,7 +72,6 @@ let horizontalLimits: number[] = [2, -1, 2, -1, 1, -1, -1];
 let gameState: GameState = {
     zBuffer: [0, 1, 2, 3, 4],
     tileStates: [
-        // TODO: Populate with real initial tile positions.
         { position: new Point(10, 2), flipped: false, rotation: 0 },
         { position: new Point(10, 6), flipped: false, rotation: 0 },
         { position: new Point(12, 6), flipped: false, rotation: 0 },
@@ -247,7 +246,7 @@ function updateGridCellOccupation() {
                 // Mark all adjacent (incl diagonal) cells as adjacent to a tile.
                 for (let dy = -1; dy <= 1; dy++) {
                     for (let dx = -1; dx <= 1; dx++) {
-                        if (dx === 0 && dy === 0) {
+                        if (Math.abs(dx) + Math.abs(dy) !== 1) {
                             continue;
                         }
                         const nx = x + dx;
