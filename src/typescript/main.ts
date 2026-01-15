@@ -2,6 +2,7 @@
 // If live debugging is needed: https://code.visualstudio.com/docs/typescript/typescript-tutorial#_debugging
 
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+const setLimitsButton = document.getElementById("set-limits-button") as HTMLButtonElement;
 
 class Point {
     x: number;
@@ -445,5 +446,34 @@ window.addEventListener("keydown", (event) => {
         tileState.rotation = (tileState.rotation + 1) % 4;
     } else if (key === "f") {
         tileState.flipped = !tileState.flipped;
+    }
+});
+
+setLimitsButton.addEventListener("click", (event) => {
+    const rowLimitButton = document.getElementById("row-limits") as HTMLInputElement;
+    const colLimitButton = document.getElementById("col-limits") as HTMLInputElement;
+    const rowLimitString = rowLimitButton.value;
+    const colLimitString = colLimitButton.value;
+    if (rowLimitString.length !== 7 || colLimitString.length !== 6) {
+        alert("Row limits must be 7 characters and column limits must be 6 characters.");
+        return;
+    }
+    for (let i = 0; i < 7; i++) {
+        const char = rowLimitString.charAt(i);
+        const limit = parseInt(char);
+        if (isNaN(limit)) {
+            horizontalLimits[i] = -1;
+        } else {
+            horizontalLimits[i] = limit;
+        }
+    }
+    for (let i = 0; i < 6; i++) {
+        const char = colLimitString.charAt(i);
+        const limit = parseInt(char);
+        if (isNaN(limit)) {
+            verticalLimits[i] = -1;
+        } else {
+            verticalLimits[i] = limit;
+        }
     }
 });
